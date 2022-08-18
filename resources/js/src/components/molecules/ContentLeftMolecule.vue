@@ -10,7 +10,7 @@
           formTextId="inputTextConteudoPacote"
           invalidFeedback="Você se esqueceu de preencher o campo com o conteúdo do pacote."
           v-model="content.name"
-          :disabled="$products.length >= 10"
+          :disabled="$products.length >= 5"
         />
       </div>
 
@@ -23,7 +23,7 @@
           formTextId="inputTextQuantidadePacote"
           invalidFeedback="Você se esqueceu de preencher o campo com a quantidade do pacote."
           v-model="content.quantity"
-          :disabled="$products.length >= 10"
+          :disabled="$products.length >= 5"
         />
       </div>
 
@@ -35,7 +35,7 @@
           formTextId="inputTextValorPacote"
           inalidFeedback="Você se esqueceu de preencher o campo com o valor do pacote."
           v-model="content.value"
-          :disabled="$products.length >= 10"
+          :disabled="$products.length >= 5"
         />
       </div>
 
@@ -43,7 +43,7 @@
         <DefaultButton
           type="submit"
           text="Adicionar Produto"
-          :disabled="$products.length >= 10"
+          :disabled="$products.length >= 5"
         />
       </div>
 

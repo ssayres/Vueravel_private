@@ -96,7 +96,7 @@ export default {
 
       try {
         const document = await axios.post(
-          "http://localhost:3333/create",
+          "https://backend-node-declaracao.herokuapp.com/create",
           data,
           {
             responseType: "blob"
