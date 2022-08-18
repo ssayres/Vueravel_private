@@ -17,7 +17,7 @@
             <td>{{ item.name }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.value }}</td>
-            <td class="trash-icon" @click="removeProduct(item)">
+            <td class="trash-icon" @click.stop="removeProduct(item)">
               <i class="bi bi-trash-fill"></i>
             </td>
           </tr>
@@ -29,7 +29,7 @@
           v-if="$products.length > 0"
           type="button"
           text="Gerar Declaração"
-          @click="createDocument"
+          @click.stop="createDocument"
           :class="['col-6']"
         />
 
@@ -37,7 +37,7 @@
           v-if="$products.length > 0"
           type="button"
           text="Limpar Declaração"
-          @click="this.$store.dispatch('resetProducts')"
+          @click.stop="this.$store.dispatch('resetProducts')"
           :class="['col-6']"
         />
       </div>

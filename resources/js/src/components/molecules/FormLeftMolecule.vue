@@ -173,7 +173,8 @@ export default {
         city: "",
         state: ""
       },
-      saveSender: this.$senderSwitchButton
+      saveSender: this.$senderSwitchButton,
+      filledAdress: false
     };
   },
   watch: {
@@ -184,6 +185,8 @@ export default {
         }
 
         if (newValue.postalCode.length == 8) {
+          if (this.filledAdress) return false;
+
           (async () => {
             try {
               const request = await axios.get(
@@ -191,23 +194,37 @@ export default {
               );
 
               this.fillAddress(request.data);
-              const fieldsToValidade = [
-                "inputEnderecoRemetente",
-                "inputCidadeRemetente",
+              this.filledAdress = true;
+
+              const cityField = document.getElementById("inputCidadeRemetente");
+              const addressField = document.getElementById(
+                "inputEnderecoRemetente"
+              );
+              const stateField = document.getElementById(
                 "inputEstadoRemetente"
-              ];
+              );
 
-              for (let fieldId of fieldsToValidade) {
-                const field = document.getElementById(fieldId);
+              cityField.className = "form-control";
+              addressField.className = "form-control";
+              stateField.className = "form-control";
 
-                field.classList.add("is-valid");
-              }
+              cityField.classList.add("is-valid");
+              addressField.classList.add("is-valid");
+              stateField.classList.add("is-valid");
             } catch (e) {
-              console.log(e);
+              console.error(e);
             }
           })();
         } else {
           this.resetAddress();
+
+          for (let id of this.$addressFormFieldIds) {
+            const field = document.getElementById(id);
+
+            field.className = "form-control";
+          }
+
+          this.filledAdress = false;
         }
       },
       deep: true
@@ -237,6 +254,15 @@ export default {
     },
     $senderSwitchButton() {
       return this.$store.getters.$stateSwitchSender;
+    },
+    $addressFormFieldIds() {
+      const inputFieldsId = [
+        "inputEnderecoRemetente",
+        "inputCidadeRemetente",
+        "inputEstadoRemetente"
+      ];
+
+      return inputFieldsId;
     }
   },
   methods: {

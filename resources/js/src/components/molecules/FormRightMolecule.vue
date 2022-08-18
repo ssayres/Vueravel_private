@@ -133,16 +133,16 @@
       <div v-else class="col-6 button" style="height: 60px">
         <DangerButton
           text="Limpar Formulário"
-          type="reset"
-          @click="resetAllForms"
+          type="button"
+          @click.stop="resetAllForms"
         />
       </div>
 
       <div v-if="!$isFilledAllForms" class="col-6 button" style="height: 60px">
         <DangerButton
           text="Limpar Formulário"
-          type="reset"
-          @click="resetAllForms"
+          type="button"
+          @click.stop="resetAllForms"
         />
       </div>
       <div v-else class="col-6 button" style="height: 60px">
@@ -201,7 +201,8 @@ export default {
         city: "",
         state: ""
       },
-      saveReciver: this.$reciverSwitchButton
+      saveReciver: this.$reciverSwitchButton,
+      filledAddress: false
     };
   },
   computed: {
@@ -235,6 +236,15 @@ export default {
 
       return inputFieldsId;
     },
+    $addressFormFieldIds() {
+      const inputFieldsId = [
+        "inputEnderecoDestinatario",
+        "inputCidadeDestinatario",
+        "inputEstadoDestinatario"
+      ];
+
+      return inputFieldsId;
+    },
     $reciverSwitchButton() {
       return this.$store.getters.$stateSwitchReciver;
     }
@@ -247,6 +257,8 @@ export default {
         }
 
         if (newValue.postalCode.length == 8) {
+          if (this.filledAdress) return false;
+
           (async () => {
             try {
               const request = await axios.get(
@@ -254,23 +266,39 @@ export default {
               );
 
               this.fillAddress(request.data);
-              const fieldsToValidade = [
-                "inputEnderecoDestinatario",
-                "inputCidadeDestinatario",
+              this.filledAdress = true;
+
+              const addressField = document.getElementById(
+                "inputEnderecoDestinatario"
+              );
+              const cityField = document.getElementById(
+                "inputCidadeDestinatario"
+              );
+              const stateField = document.getElementById(
                 "inputEstadoDestinatario"
-              ];
+              );
 
-              for (let fieldId of fieldsToValidade) {
-                const field = document.getElementById(fieldId);
+              addressField.className = "form-control";
+              cityField.className = "form-control";
+              stateField.className = "form-control";
 
-                field.classList.add("is-valid");
-              }
+              addressField.classList.add("is-valid");
+              cityField.classList.add("is-valid");
+              stateField.classList.add("is-valid");
             } catch (e) {
               console.error(e);
             }
           })();
         } else {
           this.resetAddress();
+
+          for (let id of this.$addressFormFieldIds) {
+            const field = document.getElementById(id);
+
+            field.className = "form-control";
+          }
+
+          this.filledAdress = false;
         }
       },
       deep: true
@@ -296,11 +324,11 @@ export default {
       this.reciver.state = response.uf;
     },
     resetBootstrapValidation() {
-      const inputFields = document.getElementsByClassName("form-control");
+      for (let id of this.$inputFormFieldIds) {
+        let field = document.getElementById(id);
 
-      Array.from(inputFields).forEach((el) => {
-        el.className = "form-control";
-      });
+        field.className = "form-control";
+      }
     },
     resetAddress() {
       this.reciver.address = "";
@@ -321,12 +349,23 @@ export default {
 
       this.$store.dispatch("resetReciver");
       this.resetBootstrapValidation();
-      // this.activeFormFields();
+      this.activeFormFields();
     },
     resetAllForms() {
       if (!confirm("Tem certeza que você deseja limpar os formulários?")) {
         return false;
       }
+
+      this.reciver = {
+        name: "",
+        document: "",
+        postalCode: "",
+        address: "",
+        complement: "",
+        number: "",
+        city: "",
+        state: ""
+      };
 
       const myJSX = (
         <div>
@@ -344,20 +383,9 @@ export default {
         position: POSITION.TOP_RIGHT
       });
 
-      this.reciver = {
-        name: "",
-        document: "",
-        postalCode: "",
-        address: "",
-        complement: "",
-        number: "",
-        city: "",
-        state: ""
-      };
-
       this.$externalMethods.call("FormLeftMolecule/resetForm()");
+
       this.$store.dispatch("resetReciver");
-      this.$store.dispatch("resetSender");
       this.resetBootstrapValidation();
       this.activeFormFields();
     },
