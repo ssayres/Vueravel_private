@@ -391,9 +391,15 @@ export default {
     },
     activeFormFields() {
       for (let id of this.$inputFormFieldIds) {
-        let field = document.getElementById(id);
+        try {
+          let field = document.getElementById(id);
 
-        field.disabled = false;
+          if (field != null) {
+            field.disabled = false;
+          }
+        } catch (e) {
+          console.error(e);
+        }
       }
     },
     disableFormFields() {
