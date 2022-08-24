@@ -1,6 +1,7 @@
 <template>
   <div class="page-container">
     <div class="row rows-cols-12">
+      <NavBarMolecule class="mb-4"/>
       
       <div class="col-2"></div>
       <div class="col-8">
@@ -26,13 +27,15 @@
 import FormOrganism from "../components/organisms/FormOrganism.vue";
 import ContentOrganism from "../components/organisms/ContentOrganism.vue";
 import ButtonHeaderMolecule from "../components/molecules/ButtonHeaderMolecule.vue";
+import NavBarMolecule from "../components/molecules/NavBarMolecule.vue";
 
 export default {
   name: "HomeView",
   components: {
     FormOrganism,
     ContentOrganism,
-    ButtonHeaderMolecule
+    ButtonHeaderMolecule,
+    NavBarMolecule
   },
   computed: {
     $displayPrincipalPage() {

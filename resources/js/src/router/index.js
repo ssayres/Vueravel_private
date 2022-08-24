@@ -6,6 +6,12 @@ const routes = [
     name: "form",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/FormView.vue")
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/LoginView.vue")
   }
 ];
 
