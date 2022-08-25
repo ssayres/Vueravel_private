@@ -17,7 +17,7 @@ import FormRightLoginMolecule from "../molecules/FormRightLoginMolecule.vue";
 
 export default {
   name: "LoginOrganism",
-  components: { 
+  components: {
     FormLeftLoginMolecule,
     FormRightLoginMolecule
   }
@@ -25,6 +25,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.col-6 {
+  background-color: white;
+}
+
 .login-organim-container {
   background-color: #e98b00;
 

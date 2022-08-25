@@ -72,7 +72,7 @@ form {
   grid-template-rows: 98% 2%;
 
   padding: 1.25rem;
-  border: 0.0625rem solid whitesmoke;
+  // border: 0.0625rem solid whitesmoke;
   background-color: white;
 
   position: relative;

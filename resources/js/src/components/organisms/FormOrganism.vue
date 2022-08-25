@@ -1,6 +1,7 @@
 <template>
   <div class="row row-cols-12 g-0">
     <div class="col-6 form-left">
+      
       <FormLeftMolecule />
     </div>
     <div class="col-6 form-right">

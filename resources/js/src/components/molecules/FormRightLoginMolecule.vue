@@ -4,9 +4,9 @@
 </template>
 
 <script>
+import DangerButton from "../atoms/DangerButton.vue";
 import DefaultInput from "../atoms/DefaultInput.vue";
 import DefaultButton from "../atoms/DefaultButton.vue";
-import DangerButton from "../atoms/DangerButton.vue";
 
 export default {
   name: "FormRightLoginMolecule",
@@ -21,6 +21,6 @@ export default {
 <style lang="scss" scoped>
 .imageContainer {
   background-image: url('/images/caixas.png');
-  min-height: 190px;
+  min-height: 500px;
 }
 </style>
