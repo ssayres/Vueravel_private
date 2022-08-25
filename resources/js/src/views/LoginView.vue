@@ -5,11 +5,11 @@
     <div class="row rows-cols-12">
       <NavBarMolecule class="mb-4" />
 
-      <div class="col-2"></div>
-      <div class="col-8">
+      <div class="col-3"></div>
+      <div class="col-6">
         <LoginOrganism />
       </div>
-      <div class="col-2"></div>
+      <div class="col-3"></div>
 
     </div>
   </div>

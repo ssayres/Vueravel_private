@@ -17,6 +17,9 @@
       <div class="col-12">
         <DefaultInput type="password" label="Senha" id="inputSenha" />
       </div>
+      <div class="butao col-6">
+        <DefaultButton label="Submit" type="submit" id="inputSubmit" text="Entrar" @click="batata"/>
+      </div>
     </div>
   </form>
 </template>
@@ -32,6 +35,11 @@ export default {
     DefaultInput,
     DefaultButton,
     DangerButton
+  },
+  methods: {
+    batata() {
+      console.log("batata")
+    }
   }
 };
 </script>
@@ -92,5 +100,17 @@ form {
 .form-text {
   color: gray;
   font-size: 0.75rem;
+  
+}
+.butao {
+  
+  margin-left: 5.75em;
+  margin-top: 20px;
+  
+  
+
+  
+  
+  
 }
 </style>

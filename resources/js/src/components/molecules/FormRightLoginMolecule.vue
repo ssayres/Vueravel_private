@@ -1,5 +1,6 @@
 <template>
   <div class="imageContainer">
+    <img src="/images/004via.png" alt="">
   </div>
 </template>
 
@@ -19,8 +20,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.imageContainer {
-  background-image: url('/images/caixas.png');
-  min-height: 500px;
+
+
+.imageContainer img {
+  width: 100%;
+  height: 100%;
 }
 </style>

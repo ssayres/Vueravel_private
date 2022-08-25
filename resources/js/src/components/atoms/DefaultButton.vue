@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .btn {
   width: 100%;
-  margin: 1.25rem 0 5.25rem 0;
+  margin: 1.25rem 0 0.20 0;
   box-shadow: 1px 1px 5px rgba(100, 100, 100, 0.295);
 }
 
