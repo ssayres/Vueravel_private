@@ -2,7 +2,7 @@
   <!-- A lógica representante nesse documento HTML designa que a cada doze colunas utilizadas teremos uma linha. -->
   <div class="row row-cols-12 g-0 login-organim-container marginclasse">
     <!-- Essas duas divs representam uma linha pois estamos somando seis colunas com outras seis, totalizando doze. -->
-    <div class="col-6">
+    <div class="left col-6">
       <FormLeftLoginMolecule />
     </div>
     <div class="col-6">
@@ -39,9 +39,11 @@ export default {
   border-radius: 10px;
 
   padding-bottom: 20px;
+  
 }
 
 .marginclasse {
   margin-top: 100px;
 }
+
 </style>

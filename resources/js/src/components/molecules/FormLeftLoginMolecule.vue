@@ -1,12 +1,13 @@
 <template>
-  <form class="form-container">
+  <form class="form-container" action="/api/auth/login" method="post">
     <div class="row row-cols-12">
       <!-- Linha -->
       <div class="col-12">
         <DefaultInput
           type="email"
           label="Email"
-          id=""
+          id="email"
+          name="email"
           formText=""
           formTextId=""
           invalidFeedback=""
@@ -15,7 +16,7 @@
 
       <!-- Linha -->
       <div class="col-12">
-        <DefaultInput type="password" label="Senha" id="inputSenha" />
+        <DefaultInput type="password" name="password" label="Senha" id="password" />
       </div>
       <div class="butao col-6">
         <DefaultButton label="Submit" type="submit" id="inputSubmit" text="Entrar" @click="batata"/>

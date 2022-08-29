@@ -6,6 +6,8 @@
       >
         <thead>
           <th scope="col">#</th>
+          <th scope="col">IdProduto</th>
+          <th scope="col">CentroCusto</th>
           <th scope="col">Conteúdo</th>
           <th scope="col">Qtd</th>
           <th scope="col">Valor</th>
@@ -14,6 +16,8 @@
         <tbody>
           <tr v-for="(item, index) in $products" :key="index">
             <th scope="row">{{ index + 1 }}</th>
+            <td>{{ item.IdProduct }}</td>
+            <td>{{ item.CentroCusto }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.value }}</td>

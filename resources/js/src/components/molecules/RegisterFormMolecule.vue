@@ -1,5 +1,5 @@
 <template>
-  <form class="form-container" @submit.prevent="">
+  <form class="form-container" action="/api/auth/register" method="post">
     <div class="row row-cols-12">
       <!-- Linha de cabeçalho do formulário -->
       <div class="col-12">
@@ -12,7 +12,8 @@
         <DefaultInput
           type="text"
           label="Nome"
-          id="inputNomeUsuario"
+          name="name"
+          id="name"
           formText="Não se esqueça de inserir o seu nome acima."
           formTextId="inputNomeUsuarioFormText"
           invalidFeedback="Você se "
@@ -37,7 +38,8 @@
         <DefaultInput
           type="email"
           label="Email"
-          id="inputEmailUsuario"
+          name="email"
+          id="email"
           formTextId="Não se esqueça de inserir o email no campo acima."
           invalidFeedback="Você não inseriu um email válido ou então se esqueceu de preencher o campo."
           v-model="user.email"
@@ -45,11 +47,12 @@
       </div>
 
       <!-- Linha -->
-      <div class="col-6">
+      <div class="senhax col-6">
         <DefaultInput
           type="password"
           label="Senha"
-          id="inputPasswordUsuario"
+          name="password"
+          id="password"
           formTextId="Preencha o campo acima com a sua senha, se lembre de anota-la."
           invalidFeedback="Você não inseriu uma senha válida ou então se esqueceu de preencher o campo."
           v-model="user.password"
@@ -59,7 +62,8 @@
         <DefaultInput
           type="password"
           label="Confirmação de Senha"
-          id="inputPasswordConfirmUsuario"
+          id="password_confirmation"
+          name="password_confirmation"
           formTextId="Confirme o seu password aqui, ele deve ser igual ao inserido no campo anterior."
           invalidFeedback="As senhas não são iguais ou então se esqueceu de preencher o campo."
         />
@@ -67,9 +71,11 @@
       <!-- Fim da Linha -->
 
       <!-- Linha -->
-      <div class="col-12">
-        <DefaultButton class="col-6" />
-        <DangerButton class="col-6" />
+     <div class=" botao col-2">
+        <DefaultButton label="Submit" type="submit" id="inputSubmit" text="Enviar"/>
+      </div>
+      <div class="col-2">
+        <DangerButton class="butao"   text="Limpar"/>
       </div>
     </div>
   </form>
@@ -141,8 +147,31 @@ form {
   padding: 1.25rem;
   border: 0.0625rem solid whitesmoke;
   background-color: white;
-
-  border-top-left-radius: 0.3125rem;
-  border-bottom-left-radius: 0.3125rem;
+   margin-top: 20px;
+  
 }
+
+
+.form-control:active,
+.form-control:focus {
+  outline: none;
+  box-shadow: none !important;
+}
+
+.form-control:focus {
+  border: 1px solid #e97b00;
+  box-shadow: 0 0 4px #e97b00 !important;
+}
+
+.botao{
+  margin-top: 20px;
+}
+.senhax{
+  margin-bottom: 25px;
+}
+
+.butao{
+  margin-top: 20px;
+}
+
 </style>

@@ -1,7 +1,47 @@
 <template>
   <form class="form-container" @submit.prevent="addContent">
     <div class="row row-cols-12">
-      <div class="col-12">
+      <div class="col-6">
+        <DefaultInput
+          class="idProduto"
+          type="text"
+          label="ID do produto"
+          id="inputIdPacote"
+          formText="Não se esqueça de adicionar a informação sobre o id do produto."
+          formTextId="inputTextIdProduto"
+          invalidFeedback="Você se esqueceu de preencher o campo com o conteúdo do pacote."
+          v-model="content.IdProduct"
+          :disabled="$products.length >= 5"
+        />
+      </div>
+
+      <div class=" Centro col-6" >
+        <label for="inputCentroCusto">Centro de custo</label>
+        <select 
+          class="mt-2 form-select"
+          name=""
+          v-model="content.CentroCusto"
+          :disabled="$products.length >= 5"
+          id="inputCentroCusto"
+          >
+          <option value="" selected>Escolha um item</option>
+          <option value="Suzano">Suzano</option>
+          <option value="Guarulhos">Guarulhos</option>
+          <option value="Fontalis">Fontalis</option>
+        </select>
+        <!-- <SelectInput
+          class="CentroCusto"
+          type="text"
+          label="Centro de Custo"
+          id="inputCentroCusto"
+          formText="Não se esqueça de adicionar a informação sobre o Centro de Custo."
+          formTextId="inputTextCentroCusto"
+          invalidFeedback="Você se esqueceu de preencher o campo com o conteúdo do pacote."
+          v-model="content.CentroCusto"
+          :disabled="$products.length >= 5"
+        /> -->
+      </div>
+      <div class="col-12 my-3">
         <DefaultInput
           type="text"
           label="Conteúdo do pacote"
@@ -27,7 +67,7 @@
         />
       </div>
 
-      <div class="col-12">
+      <div class="col-12 my-3">
         <MoneyInput
           label="Valor (R$)"
           id="inputValorPacote"
@@ -39,20 +79,22 @@
         />
       </div>
 
-      <div class="col-6 button">
-        <DefaultButton
-          type="submit"
-          text="Adicionar Produto"
-          :disabled="$products.length >= 5"
-        />
-      </div>
+      <div class="row mt-5">
+        <div class="col-6 button">
+          <DefaultButton
+            type="submit"
+            text="Adicionar Produto"
+            :disabled="$products.length >= 5"
+          />
+        </div>
 
-      <div class="col-6 button">
-        <DangerButton
-          text="Limpar Formulário"
-          type="reset"
-          @click="resetBootstrapValidation"
-        />
+        <div class="col-6 button">
+          <DangerButton
+            text="Limpar Formulário"
+            type="reset"
+            @click="resetBootstrapValidation"
+          />
+        </div>
       </div>
     </div>
   </form>
@@ -64,6 +106,7 @@ import DefaultInput from "../atoms/DefaultInput.vue";
 import MoneyInput from "../atoms/MoneyInput.vue";
 import DefaultButton from "../atoms/DefaultButton.vue";
 import DangerButton from "../atoms/DangerButton.vue";
+import SelectInput from "../atoms/SelectInput.vue";
 
 export default {
   name: "ContentLeftMolecule",
@@ -71,6 +114,7 @@ export default {
     DefaultInput,
     DefaultButton,
     DangerButton,
+    SelectInput,
     MoneyInput
   },
   setup() {
@@ -86,6 +130,8 @@ export default {
   data() {
     return {
       content: {
+        IdProduct: "",
+        CentroCusto: "",
         name: "",
         quantity: "",
         value: ""
@@ -98,6 +144,8 @@ export default {
     },
     $inputFieldsIds() {
       const inputFieldsId = [
+        "inputIdPacote",
+        "inputCentroCusto",
         "inputConteudoPacote",
         "inputQuantidadePacote",
         "inputValorPacote"
@@ -111,6 +159,7 @@ export default {
       let response = false;
 
       Object.entries(this.content).forEach(([key, value]) => {
+        console.log(key, value);
         if (value.length <= 0) {
           response = true;
         }
@@ -145,6 +194,8 @@ export default {
       this.resetBootstrapValidation();
       this.$store.dispatch("addProduct", this.content);
       this.content = {
+        IdProduct: "",
+        CentroCusto: "",
         name: "",
         quantity: "",
         value: ""
@@ -209,4 +260,24 @@ form {
   border-top-left-radius: 0.3125rem;
   border-bottom-left-radius: 0.3125rem;
 }
+.Centro{
+ 
+  outline: none;
+  box-shadow: none !important;
+  
+  
+  
+}
+
+.form-control:focus {
+  border: 1px solid #e97b00;
+  box-shadow: 0 0 4px #e97b00 !important;
+}
+
+.form-text {
+  color: gray;
+  font-size: 0.75rem;
+}
+
+
 </style>

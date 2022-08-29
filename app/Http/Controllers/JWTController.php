@@ -27,6 +27,8 @@ class JWTController extends Controller
      */
     public function register(Request $request)
     {
+        
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|min:2|max:100',
             'email' => 'required|string|email|max:100|unique:users',
@@ -69,7 +71,9 @@ class JWTController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return $this->respondWithToken($token);
+        // /*return $this->respondWithToken($token); 
+
+        return redirect('/');
     }
 
     /**
