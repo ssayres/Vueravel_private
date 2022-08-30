@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Dompdf\Dompdf;
 use App\Http\Controllers\JWTController;
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/index',[PdfController::class,"CDF"]);
 /*
 |--------------------------------------------------------------------------
 | API Auth Routes;
