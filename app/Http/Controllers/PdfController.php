@@ -8,7 +8,7 @@ class PdfController extends Controller
 {
     public function CDF(Request $request){
         $request = $request->all();
-        $dompdf = new Dompdf();
+        $dompdf = new Dompdf(["enable_remote" => true]);
         //$dompdf->loadHtml("<h1>Teste PDF<h1>");
         
         ob_start();
@@ -16,7 +16,7 @@ class PdfController extends Controller
         //$pdf = ob_get_clean();
         $dompdf->loadHtml(ob_get_clean());
         // Setup do papel
-        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->setPaper('A4', '');
         
         // Renderizar o html como pdf
         $dompdf->render();
@@ -26,4 +26,6 @@ class PdfController extends Controller
         $dompdf->stream('pdf.pdf');
     }
 }
+
+
 
