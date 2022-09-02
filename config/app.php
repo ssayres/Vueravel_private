@@ -58,7 +58,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Timezone
+     Application Timezone
     |--------------------------------------------------------------------------
     |
     | Here you may specify the default timezone for your application, which
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,7 @@ return [
             * Application Service Providers for JWT;
         */
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
 
     ],
 
@@ -234,6 +235,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Date' => Jenssegers\Date\Date::class,
 
     ],
 
